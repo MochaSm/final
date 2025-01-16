@@ -3,13 +3,12 @@ const easy = `https://opentdb.com/api.php?amount=20&difficulty=easy`
 const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
 const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
 
-let correct_answer;
 
 let lives = null;
 
 let diff =null;
 
-let mulitplyer  = null;
+let mulitplyer  = lives * mult;
 
 window.onload = function() {
 
@@ -32,7 +31,7 @@ async function imgDelivery(data) {
             console.log(query);
         const imageUrl = await fetchPexelsData(query);
 
-        if (imageUrl){
+        if (imageUrl){ // Hitler
             console.log(imageUrl)
             // Create an image element
             const img = document.createElement("img");
@@ -139,41 +138,92 @@ function show(data) {
     Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
     contain.appendChild(Div)
 
-    if(data.results[i].type == 'multiple'){
-        for(let e in data.results[i].incorrect_answers){
-            let btns = document.createElement('button')
-            btncontain.appendChild(btns)
-            btns.innerHTML = data.results[i].incorrect_answers[e];
-            if(e == 2){
-                let btns = document.createElement('button')
-                btncontain.appendChild(btns)
-                btns.innerHTML = data.results[i].correct_answer;
+    const correctAnswer = data.results[i].correct_answer;
 
-            }
-            console.log(e)
-        }   
 
-    }else if(data.results[i].type == 'boolean'){
+    if (data.results[i].type === 'boolean') {
         for(let j = 0; j < 2; j++){
             if(j == 0){
                 let btns = document.createElement('button')
-            btncontain.appendChild(btns)
-            btns.innerHTML = 'true'
+                btncontain.appendChild(btns)
+                btns.innerHTML = 'true'
 
             }
-            
+            // Kuwar was here
             else{
-                let btns = document.createElement('button')
-            btncontain.appendChild(btns)
-            btns.innerHTML = 'false'
+                    let btns = document.createElement('button')
+                btncontain.appendChild(btns)
+                btns.innerHTML = 'false'
             }
-            
         }
+    } else if (data.results[i].type === 'multiple') {
+        const allAnswers = [...data.results[i].incorrect_answers, correctAnswer];
+        allAnswers.sort(function() { return 0.5 - Math.random(); });
+
+        for (let j = 0; j < allAnswers.length; j++) {
+            createAnswer(allAnswers[j], correctAnswer);
+        }
+    }
+
+    // questionDiv.appendChild(answersList);
+    // answersContainer.appendChild(questionDiv)
+
+    function createAnswer(answerText, correctAnswer) {
+        let btns = document.createElement('button')
+        btns.innerHTML = answerText;
+    
+        btns.addEventListener('click', function() {
+            checkAnswer(answerText, correctAnswer);
+        });
+    
+        btncontain.appendChild(btns);
+    }
+
+    function checkAnswer(answerText, correctAnswer){
+        if(answerText == correctAnswer){
+            lives = lives - mulitplyer;
+            console.log('yup')
+        }else{
+            console.log('duh')
+
+        }
+    }
+
+    // if(data.results[i].type == 'multiple'){
+    //     for(let e in data.results[i].incorrect_answers){
+    //         let btns = document.createElement('button')
+    //         btncontain.appendChild(btns)
+    //         btns.innerHTML = data.results[i].incorrect_answers[e];
+    //         if(e == 2){
+    //             let btns = document.createElement('button')
+    //             btncontain.appendChild(btns)
+    //             btns.innerHTML = data.results[i].correct_answer;
+
+    //         }
+    //         console.log(e)
+    //     }   
+
+    // }else if(data.results[i].type == 'boolean'){
+    //     for(let j = 0; j < 2; j++){
+    //         if(j == 0){
+    //             let btns = document.createElement('button')
+    //         btncontain.appendChild(btns)
+    //         btns.innerHTML = 'true'
+
+    //         }
+            
+    //         else{
+    //             let btns = document.createElement('button')
+    //         btncontain.appendChild(btns)
+    //         btns.innerHTML = 'false'
+    //         }
+            
+    //     }
      
         
 
         
-    }
+    
     i ++
 
     // }   

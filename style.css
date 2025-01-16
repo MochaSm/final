@@ -214,12 +214,19 @@ body {
 }
 
 @media only screen and (min-width: 1200px) {
+
+  .question-image{
+    object-fit: contain ;
+    width: 100%;
+    height: 70%;
+    grid-area: img;
+}
   
 .container{
   text-align: center;
   display: grid;
   justify-content: center;
-  grid-template-rows: 1fr 600px 1fr;
+  grid-template-rows: 1fr 500px 1fr;
   grid-template-areas: 'question' 'img' 'btns';
   width: 85%;
   justify-self: center;
@@ -391,7 +398,7 @@ body {
 
 .btnconatin > button:nth-child(4){
   background-color: var(--red);
-
+  
 }
 
 .btnconatin{
