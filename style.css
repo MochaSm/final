@@ -6,6 +6,10 @@
     font-family: sans-serif;
 }
 
+.pos{
+  height: 50%;
+  background-color: #000;
+}
 :root{
     --red: #a04e53;
     --blue: #3477eb;
@@ -398,7 +402,7 @@ body {
 
 .btnconatin > button:nth-child(4){
   background-color: var(--red);
-  
+
 }
 
 .btnconatin{
@@ -423,3 +427,10 @@ body {
 
 
 /* js stuff */
+
+#pos{
+  opacity: .2;
+  font-size: 3em;
+  position: absolute;
+  font-family: monospace;
+}

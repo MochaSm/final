@@ -4,11 +4,29 @@ const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
 const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
 
 
+let x = '0'
+let y = '0'
+onmousemove = function(e){
+let pos = document.getElementById('pos')
+
+    // console.log("mouse location:", e.clientX, e.clientY)
+     x = e.clientX 
+     y = e.clientY
+     console.log(x, y)
+    pos.innerHTML = 'x' +x +'y'+ y
+
+}
+
+
+
+
+
+
 let lives = null;
 
 let diff =null;
 
-let mulitplyer  = lives * mult;
+// let mulitplyer  = lives * mult;
 
 window.onload = function() {
 
