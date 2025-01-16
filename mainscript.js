@@ -97,9 +97,9 @@ async function searchtrivea(diff) {
     diff = diff;
     let btn = document.getElementById('landing').style.display = 'none';
     try {   
-        // const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
         
-        const response = await fetch('/questions.json');
+        // const response = await fetch('/questions.json');
         const data = await response.json();
         console.log(data);
         show(data)
@@ -138,33 +138,37 @@ function show(data) {
     Div.classList.add('question')
     Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
     contain.appendChild(Div)
-    console.log(data.results)
+
     if(data.results[i].type == 'multiple'){
         for(let e in data.results[i].incorrect_answers){
             let btns = document.createElement('button')
             btncontain.appendChild(btns)
             btns.innerHTML = data.results[i].incorrect_answers[e];
         }   
-        btns.innerHTML =data.results[i].correct_answer
 
-    }else{
+    }else if(data.results[i].type == 'boolean'){
+        for(let j = 0; j < 2; j++){
+            if(j == 0){
+                let btns = document.createElement('button')
+            btncontain.appendChild(btns)
+            btns.innerHTML = 'true'
 
+            }
+            
+            else{
+                let btns = document.createElement('button')
+            btncontain.appendChild(btns)
+            btns.innerHTML = 'false'
+            }
+            
+        }
+     
+        
+
+        
     }
     i ++
-    // for(i in data.results){
-    //     let contain = document.createElement('div')
-    //     contain.classList.add('container')
-    //     let answer = document.getElementById('answer')
-    //     console.log(i)
-    //     console.log(data.results[i].question ) 
-    //     let Div = document.createElement("div");
-    //     Div.classList.add('questions')
-    //     Div.innerHTML = "<h2>"+data.results[i].question  +"</h2>\n <p> correct answer " +data.results[i].correct_answer+"</p>"  ;
-    //     Div.innerHTML += "\n<p>"+'incorrect answers:'+data.results[i].incorrect_answers+"</p>"  ;
-    //     answer.appendChild(Div)
 
-
-     
     // }   
 
    
