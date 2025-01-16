@@ -144,6 +144,13 @@ function show(data) {
             let btns = document.createElement('button')
             btncontain.appendChild(btns)
             btns.innerHTML = data.results[i].incorrect_answers[e];
+            if(e == 2){
+                let btns = document.createElement('button')
+                btncontain.appendChild(btns)
+                btns.innerHTML = data.results[i].correct_answer;
+
+            }
+            console.log(e)
         }   
 
     }else if(data.results[i].type == 'boolean'){
