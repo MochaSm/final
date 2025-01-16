@@ -36,7 +36,7 @@ async function imgDelivery(data) {
             console.log(imageUrl)
             // Create an image element
             const img = document.createElement("img");
-            img.src = imageUrl.photos[0].src.original;
+            img.src = imageUrl.photos[0].src.medium;
             img.alt = `Image for ${data.results[i].question}`;
             img.className = "question-image";
             i++
@@ -97,9 +97,9 @@ async function searchtrivea(diff) {
     diff = diff;
     let btn = document.getElementById('landing').style.display = 'none';
     try {   
-        const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
+        // const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
         
-        // const response = await fetch('/questions.json');
+        const response = await fetch('/questions.json');
         const data = await response.json();
         console.log(data);
         show(data)
