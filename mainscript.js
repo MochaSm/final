@@ -3,7 +3,10 @@ const easy = `https://opentdb.com/api.php?amount=20&difficulty=easy`
 const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
 const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
 
-
+    let contain = document.createElement('div')
+    let btncontain = document.createElement('div')
+let data  = ''
+let i = 0;
 let x = '0'
 let y = '0'
 onmousemove = function(e){
@@ -12,7 +15,6 @@ let pos = document.getElementById('pos')
     // console.log("mouse location:", e.clientX, e.clientY)
      x = e.clientX 
      y = e.clientY
-     console.log(x, y)
     pos.innerHTML = 'x' +x +'y'+ y
 
 }
@@ -43,7 +45,6 @@ let testcase = 'In 1989 what happend in the China'
 
 
 async function imgDelivery(data) { 
-        let i = 0
         let contain = document.querySelector('.container')   
         const query = `${data.results[i].question}`
             console.log(query);
@@ -64,7 +65,6 @@ async function imgDelivery(data) {
         } else{
             console.error(`No image found for question:
             ${data.results[i].question}`);
-           i++
 
         }
 }
@@ -117,7 +117,7 @@ async function searchtrivea(diff) {
         // const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
         
         const response = await fetch('/questions.json');
-        const data = await response.json();
+        data = await response.json();
         console.log(data);
         show(data)
         await imgDelivery(data)
@@ -129,27 +129,29 @@ async function searchtrivea(diff) {
   } // searchTvShows 
 
 function show(data) {
-    let i = 0 
-    if(data.results[0].difficulty == 'hard'){
-        lives=10
-    }else if(data.results[0].difficulty == 'medium'){
-        lives=25
-        console.log(lives)
+    contain.innerHTML = ''
+    btncontain.innerHTML = ''
 
-    }else if(data.results[0].difficulty == 'easy'){
-        lives=50
-        console.log(lives)
+    // if(data.results[i].difficulty == 'hard'){
+    //     lives=10
+    // }else if(data.results[i].difficulty == 'medium'){
+    //     lives=25
+    //     console.log(lives)
 
-    }
+    // }else if(data.results[i].difficulty == 'easy'){
+    //     lives=50
+    //     console.log(lives)
 
-    let contain = document.createElement('div')
+    // }
+    if(data.results.length > i){
+        console.log(data.results.length)
+    console.log(i)
+
     let answer = document.getElementById('questions')
-    let btncontain = document.createElement('div')
     btncontain.classList.add('btnconatin')
     contain.classList.add('container')
     contain.appendChild(btncontain)
     answer.appendChild(contain)
-    console.log(i)
     console.log(data.results[i].question ) 
     let Div = document.createElement("div");
     Div.classList.add('question')
@@ -161,17 +163,25 @@ function show(data) {
 
     if (data.results[i].type === 'boolean') {
         for(let j = 0; j < 2; j++){
+            
             if(j == 0){
                 let btns = document.createElement('button')
                 btncontain.appendChild(btns)
                 btns.innerHTML = 'true'
 
+                btns.addEventListener('click', function() {
+                    checkAnswer(answerText, correctAnswer);
+                });
+
             }
-            // Kuwar was here
             else{
-                    let btns = document.createElement('button')
+                let btns = document.createElement('button')
                 btncontain.appendChild(btns)
                 btns.innerHTML = 'false'
+
+                btns.addEventListener('click', function() {
+                    checkAnswer(answerText, correctAnswer);
+                });
             }
         }
     } else if (data.results[i].type === 'multiple') {
@@ -182,26 +192,40 @@ function show(data) {
             createAnswer(allAnswers[j], correctAnswer);
         }
     }
+    }else{
+        contain.innerHTML = '<p>hey</p>'
 
+    }
+    
+}
     // questionDiv.appendChild(answersList);
     // answersContainer.appendChild(questionDiv)
 
     function createAnswer(answerText, correctAnswer) {
+
         let btns = document.createElement('button')
         btns.innerHTML = answerText;
     
         btns.addEventListener('click', function() {
             checkAnswer(answerText, correctAnswer);
         });
-    
         btncontain.appendChild(btns);
     }
 
     function checkAnswer(answerText, correctAnswer){
+    console.log(i)
+
+
         if(answerText == correctAnswer){
-            lives = lives - mulitplyer;
+            show(data)
+             imgDelivery(data)
+
+            i++
+
+            // lives = lives - mulitplyer;
             console.log('yup')
         }else{
+
             console.log('duh')
 
         }
@@ -242,11 +266,9 @@ function show(data) {
 
         
     
-    i ++
 
     // }   
 
    
-} // showEpisodes
 
 
