@@ -6,6 +6,21 @@
     font-family: sans-serif;
 }
 
+#setts{
+  display: none;
+}
+
+#creds{
+  display: none;
+}
+
+.icons{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  font-size: 30px;
+}
+
 .pos{
   height: 50%;
   background-color: #000;

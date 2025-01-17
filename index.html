@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -14,6 +16,17 @@
 <body>
 <div id="pos"></div>
 <div class="main">
+    <div id="creds">
+        <h1>Web dev 11 final project - Alex Le MDSS 27</h1>
+        <h3>you can ignore this section I did this so it looks aesthically even on the front tbh ¯\_(ツ)_/¯</h3>
+        <i onclick="back()" class="fa-solid fa-arrow-left"></i>
+
+    </div>
+    <div id="setts">
+        <h1>sup</h1>
+        <i onclick="back()" class="fa-solid fa-arrow-left"></i>
+
+    </div>
     <div id="landing">
         <div class="intro">
             <h1 class="header">Quzzical</h1>
@@ -23,7 +36,11 @@
             <button class="easy" onclick='searchtrivea("easy")'>easy</button>
             <button class="medium" onclick='searchtrivea("medium")'>medium</button>
             <button class="hard" onclick='searchtrivea("hard")'>hard</button>
-            
+            <div class="icons">
+                <i onclick="settings()" id="gear" class="fa-solid fa-gear"></i>
+                <i onclick="creds()" id="info" class="fa-solid fa-info"></i>
+            </div>
+      
         </div>  
        
     </div>

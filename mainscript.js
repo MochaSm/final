@@ -5,6 +5,11 @@ const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
 
     let contain = document.createElement('div')
     let btncontain = document.createElement('div')
+    let gear = document.getElementById('gear')
+    let info = document.getElementById('info')
+
+    let front = document.getElementById('landing');
+
 let data  = ''
 let i = 0;
 let x = '0'
@@ -19,12 +24,32 @@ let pos = document.getElementById('pos')
 
 }
 
+function back(){
+    document.getElementById('landing').style.display = 'grid'
+    document.getElementById('setts').style.display = 'none'
+    document.getElementById('creds').style.display = 'none'
+}
+
+function settings(){
+    document.getElementById('landing').style.display = 'none'
+    document.getElementById('setts').style.display = 'grid'
+
+    
+
+}
+
+function creds(){
+    document.getElementById('landing').style.display = 'none'
+    document.getElementById('creds').style.display = 'grid'
 
 
-
-
-
+}
 let lives = null;
+
+
+let mulitplyer = null;
+
+
 
 let diff =null;
 
@@ -112,11 +137,12 @@ async function fetchPexelsData(search) {
 
 async function searchtrivea(diff) {
     diff = diff;
-    let btn = document.getElementById('landing').style.display = 'none';
+    document.getElementById('landing').style.display = 'none'
+
     try {   
-        // const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
         
-        const response = await fetch('/questions.json');
+        // const response = await fetch('/questions.json');
         data = await response.json();
         console.log(data);
         show(data)
@@ -129,25 +155,36 @@ async function searchtrivea(diff) {
   } // searchTvShows 
 
 function show(data) {
+    let time = setTimeout(3000)
     contain.innerHTML = ''
     btncontain.innerHTML = ''
 
-    // if(data.results[i].difficulty == 'hard'){
-    //     lives=10
-    // }else if(data.results[i].difficulty == 'medium'){
-    //     lives=25
-    //     console.log(lives)
+    if(data.results[i].difficulty == 'hard'){
 
-    // }else if(data.results[i].difficulty == 'easy'){
-    //     lives=50
-    //     console.log(lives)
+        lives=10
+        mulitplyer = lives*Math.floor(Math.random() * .90)
+        console.log(mulitplyer)
+    }else if(data.results[i].difficulty == 'medium'){
+        lives=25
+        console.log(lives)
+        mulitplyer = lives*(Math.random() * .90)
+        console.log(mulitplyer)
 
-    // }
+    }else if(data.results[i].difficulty == 'easy'){
+        lives=50
+        console.log(lives) 
+        mulitplyer = lives*Math.floor(Math.random() * .90)
+        console.log(mulitplyer)
+
+    }
     if(data.results.length > i){
         console.log(data.results.length)
     console.log(i)
 
     let answer = document.getElementById('questions')
+    let timer = document.createElement('div'
+    )
+    timer.classList.add('timer')
     btncontain.classList.add('btnconatin')
     contain.classList.add('container')
     contain.appendChild(btncontain)
@@ -157,9 +194,9 @@ function show(data) {
     Div.classList.add('question')
     Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
     contain.appendChild(Div)
-
+    timer.innerHTML='<i class="fa-regular fa-clock"></i>' + time
     const correctAnswer = data.results[i].correct_answer;
-
+    contain.appendChild(timer)
 
     if (data.results[i].type === 'boolean') {
         for(let j = 0; j < 2; j++){
@@ -215,20 +252,27 @@ function show(data) {
     function checkAnswer(answerText, correctAnswer){
     console.log(i)
 
-
+    if(lives > 1){
+                
+   
         if(answerText == correctAnswer){
             show(data)
-             imgDelivery(data)
+            imgDelivery(data)
 
             i++
 
-            // lives = lives - mulitplyer;
             console.log('yup')
         }else{
-
-            console.log('duh')
+            console.log(mulitplyer)
+            lives = lives - mulitplyer;
+            
+            console.log(lives)
 
         }
+    }else{
+        contain.innerHTML = 'game voer stinky'
+
+    }
     }
 
     // if(data.results[i].type == 'multiple'){
