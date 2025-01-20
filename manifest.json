@@ -1,0 +1,42 @@
+{
+    "description":"quiz app",
+    "theme_color":"#b5b3b7",
+    "background_color":"#ffffff",
+    "orientation":"portrait",
+    "display":"standalone",
+    "dir":"auto",
+    "lang":"en-GB",
+    "name":"Quzzical",
+    "short_name":"Quizzical",
+    "start_url":"something",
+    "scope":"something",
+    "icons":[
+        {
+           "purpose":"maskable",
+           "sizes":"512x512",
+           "src":"icon512_maskable.png",
+           "type":"image/png"
+        },
+        {
+           "purpose":"any",
+           "sizes":"512x512",
+           "src":"icon512_rounded.png",
+           "type":"image/png"
+        }
+     ],
+
+     "screenshots": [
+        {
+          "src": "ss/desktopSS.png",
+          "sizes": "1440x900",
+          "type": "image/png",
+          "form_factor": "wide"
+        },
+        {
+          "src": "ss/mobileSS.png",
+          "sizes": "400x932",
+          "type": "image/png",
+          "form_factor": "narrow"
+        }
+      ]
+ }
