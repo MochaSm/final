@@ -9,7 +9,7 @@ const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
     let info = document.getElementById('info')
 
     let front = document.getElementById('landing');
-
+let duration = 0
 let data  = ''
 let i = 0;
 let x = '0'
@@ -64,9 +64,7 @@ window.onload = function() {
 
 // let = amount;
 
-// let stopwords = [/i/, /me/, /my/, /myself/, /we/, /our/, /ours/, /ourselves/, /you/, /your/, /yours/, /yourself/, /yourselves/, /he/, /him/, /his/, /himself/, /she/, /her/, /hers/, /herself/, /it/, /its/, /itself/, /they/, /them/, /their/, /theirs/, /themselves/, /what/, /which/, /who/, /whom/, /this/, /that/, /these/, /those/, /am/, /is/, /are/, /was/, /were/, /be/, /been/, /being/, /have/, /has/, /had/, /having/, /do/, /does/, /did/, /doing/, /a/, /an/, /the/, /and/, /but/, /if/, /or/, /because/, /as/, /until/, /while/, /of/, /at/, /by/, /for/, /with/, /about/, /against/, /between/, /into/, /through/, /during/, /before/, /after/, /above/, /below/, /to/, /from/, /up/, /down/, /in/, /out/, /on/, /off/, /over/, /under/, /again/, /further/, /then/, /once/, /here/, /there/, /when/, /where/, /why/, /how/, /all/, /any/, /both/, /each/, /few/, /more/, /most/, /other/, /some/, /such/, /no/, /nor/, /not/, /only/, /own/, /same/, /so/, /than/, /too/, /very/, /s/, /t/, /can/, /will/, /just/, /don/, /should/, /now/,[a-z]]
 
-let testcase = 'In 1989 what happend in the China'
 
 
 async function imgDelivery(data) { 
@@ -95,23 +93,7 @@ async function imgDelivery(data) {
 }
 
 
-const testing = () =>{
-    // for(let i = 0; i < testcase.length; i++){
-    //     if(stopwords){
 
-    //     }else
-    //     console.log(testcase[i])
-    //     if(testcase[i].toUpperCase == true){
-    //         console.log(testcase[i]);
-    //         query = i   
-    //         img(data)
-    //     }else{
-    //         console.log('garbage')
-    //     }
-    // } 
-
-    console.log(testcase.test)
-}
 
 
 async function fetchPexelsData(search) {
@@ -140,9 +122,9 @@ async function searchtrivea(diff) {
     document.getElementById('landing').style.display = 'none'
 
     try {   
-        const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
+        // const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
         
-        // const response = await fetch('/questions.json');
+        const response = await fetch('/questions.json');
         data = await response.json();
         console.log(data);
         show(data)
@@ -155,12 +137,11 @@ async function searchtrivea(diff) {
   } // searchTvShows 
 
 function show(data) {
-    let time = setTimeout(3000)
     contain.innerHTML = ''
     btncontain.innerHTML = ''
 
     if(data.results[i].difficulty == 'hard'){
-
+        duration = 5
         lives=10
         mulitplyer = lives*Math.floor(Math.random() * .90)
         console.log(mulitplyer)
@@ -169,12 +150,14 @@ function show(data) {
         console.log(lives)
         mulitplyer = lives*(Math.random() * .90)
         console.log(mulitplyer)
+        duration = 10
 
     }else if(data.results[i].difficulty == 'easy'){
         lives=50
         console.log(lives) 
         mulitplyer = lives*Math.floor(Math.random() * .90)
         console.log(mulitplyer)
+        duration = 15
 
     }
     if(data.results.length > i){
@@ -183,8 +166,9 @@ function show(data) {
 
     let answer = document.getElementById('questions')
     let timer = document.createElement('div'
+        
     )
-    timer.classList.add('timer')
+    timer.setAttribute('id', 'timer');
     btncontain.classList.add('btnconatin')
     contain.classList.add('container')
     contain.appendChild(btncontain)
@@ -194,9 +178,12 @@ function show(data) {
     Div.classList.add('question')
     Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
     contain.appendChild(Div)
-    timer.innerHTML='<i class="fa-regular fa-clock"></i>' + time
+    
     const correctAnswer = data.results[i].correct_answer;
     contain.appendChild(timer)
+
+    startTimer(duration,timer)
+
 
     if (data.results[i].type === 'boolean') {
         for(let j = 0; j < 2; j++){
@@ -270,49 +257,39 @@ function show(data) {
 
         }
     }else{
+        gameover()
+    }
+    }
+
+    function startTimer(duration, timer) {
+        let times = duration, minutes, seconds;
+        let startTime = Date.now() + 1000; 
+    
+        interval = setInterval(() => {
+            minutes = parseInt(times / 60, 10);
+            seconds = parseInt(times % 60, 10);
+            
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            
+            document.getElementById('timer').innerHTML = '<i class="fa-regular fa-clock"></i>' + minutes + ":" + seconds;
+            if (--times < 0) {
+                times = 0;
+                gameover();
+                document.getElementById('timer').innerHTML = "";
+                clearInterval(interval); 
+            }
+        }, 1000);
+    }
+
+    function gameover(){
         contain.innerHTML = 'game voer stinky'
 
     }
-    }
-
-    // if(data.results[i].type == 'multiple'){
-    //     for(let e in data.results[i].incorrect_answers){
-    //         let btns = document.createElement('button')
-    //         btncontain.appendChild(btns)
-    //         btns.innerHTML = data.results[i].incorrect_answers[e];
-    //         if(e == 2){
-    //             let btns = document.createElement('button')
-    //             btncontain.appendChild(btns)
-    //             btns.innerHTML = data.results[i].correct_answer;
-
-    //         }
-    //         console.log(e)
-    //     }   
-
-    // }else if(data.results[i].type == 'boolean'){
-    //     for(let j = 0; j < 2; j++){
-    //         if(j == 0){
-    //             let btns = document.createElement('button')
-    //         btncontain.appendChild(btns)
-    //         btns.innerHTML = 'true'
-
-    //         }
-            
-    //         else{
-    //             let btns = document.createElement('button')
-    //         btncontain.appendChild(btns)
-    //         btns.innerHTML = 'false'
-    //         }
-            
-    //     }
-     
-        
-
-        
-    
-
-    // }   
-
    
 //instal stuff
 
