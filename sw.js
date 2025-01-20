@@ -10,7 +10,9 @@ const STATIC_ASSETS = [
   '/mainscript.js',
 //   '/icon/icon512_maskable.png',
 //   '/icon/icon512_rounded.png',
-  '/manifest.json'
+  '/manifest.json',
+  'ss/desktopSS.png',
+  'ss/mobileSS.png'
   // Add other static files you want to cache
 ];           
 
