@@ -9,10 +9,56 @@
 #back{
   font-size: 2em;
 }
-#setts{
-  display: none;
+
+.exit{
+  display: flex;
+  flex-flow: row;
+  gap: 12px;
+ 
 }
 
+.exit > p{
+  padding-top: 6px;
+}
+#setts{
+  gap: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  background-color: #cccc;
+  width: 75%;
+  justify-self: center;
+  padding-left: 20px;
+  align-content: center;
+
+}
+
+input{
+  height: 30px;
+  border: none;
+  border-top-left-radius: 5px;   
+  border-top-right-radius: 5px;
+ border-bottom-left-radius: 5px;
+ border-bottom-right-radius: 5px;
+}
+
+select{
+  height: 30px;
+
+  border: none;
+  border-top-left-radius: 5px;   
+  border-top-right-radius: 5px;
+ border-bottom-left-radius: 5px;
+ border-bottom-right-radius: 5px;
+}
+option{
+  height: 30px;
+
+  font-size: 1.5em;
+  text-decoration: none;
+}
 #creds{
   display: none;
 }
@@ -237,6 +283,25 @@ body {
 
 @media only screen and (min-width: 1200px) {
 
+  #setts{
+    gap: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: #cccc;
+    width: 75%;
+    justify-self: center;
+    grid-template-rows: 1fr .4fr .5fr;
+    padding-left: 20px;
+    align-content: center;
+    border-top-left-radius: 30px;   
+    border-top-right-radius: 30px;
+   border-bottom-left-radius: 30px;
+   border-bottom-right-radius: 30px;
+  }
+
   .question-image{
     object-fit: contain ;
     width: 100%;
@@ -309,7 +374,34 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+  #setts > h1{
+    font-size: 4em;
+  }
 
+  #setts > h2{
+    font-size: 2em;
+  }
+
+
+  #setts{
+    gap: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    background-color: #cccc;
+    width: 75%;
+    justify-self: center;
+    grid-template-rows: .3fr .2fr .2fr;
+    padding-left: 20px;
+    align-content: center;
+    border-top-left-radius: 30px;   
+    border-top-right-radius: 30px;
+   border-bottom-left-radius: 30px;
+   border-bottom-right-radius: 30px;
+   height: 55%;
+  }
   .question-image{
     object-fit: contain ;
     width: 300px;
