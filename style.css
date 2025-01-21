@@ -5,7 +5,10 @@
     cursor: crosshair ;
     font-family: sans-serif;
 }
-
+.temp{
+  justify-self: center;
+  display: flex;
+}
 #back{
   font-size: 2em;
 }
