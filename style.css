@@ -244,7 +244,7 @@ body {
     grid-area: img;
 }
   
-.container{
+#container{
   text-align: center;
   display: grid;
   justify-content: center;
@@ -375,7 +375,7 @@ body {
   }
 
   
-.container{
+#container{
   text-align: center;
   align-self: center;
   gap: 12px;

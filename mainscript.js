@@ -14,10 +14,33 @@ let data  = ''
 let i = 0;
 let x = '0'
 let y = '0'
+
+let amount = '10'
+let category = '9';
+let type = "multiple";
+
+//var changes
+function varchange(value){
+    amount = value
+  }
+  
+
+  
+  function varchange2(value){
+    category = value
+  
+  }
+  
+  function varchange3(value){
+    type = value
+  
+  }
+  
+
+
 onmousemove = function(e){
 let pos = document.getElementById('pos')
 
-    // console.log("mouse location:", e.clientX, e.clientY)
      x = e.clientX 
      y = e.clientY
     pos.innerHTML = 'x' +x +'y'+ y
@@ -28,6 +51,7 @@ function back(){
     document.getElementById('landing').style.display = 'grid'
     document.getElementById('setts').style.display = 'none'
     document.getElementById('creds').style.display = 'none'
+    document.getElementById('container').style.display = 'none'
 }
 
 function settings(){
@@ -47,14 +71,10 @@ let mulitplyer = null;
 
 
 let diff =null;
+let right = 0;
 
 // let mulitplyer  = lives * mult;
 
-window.onload = function() {
-
- 
-} // window.onload
- 
 
 
 // let = amount;
@@ -63,7 +83,7 @@ window.onload = function() {
 
 
 async function imgDelivery(data) { 
-        let contain = document.querySelector('.container')   
+        let contain = document.getElementById('container')   
         const query = `${data.results[i].question}`
             console.log(query);
         const imageUrl = await fetchPexelsData(query);
@@ -117,7 +137,7 @@ async function searchtrivea(diff) {
     document.getElementById('landing').style.display = 'none'
 
     try {   
-        const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${diff}&type=${type}`);
         
         // const response = await fetch('/questions.json');
         data = await response.json();
@@ -137,84 +157,83 @@ function show(data) {
     contain.innerHTML = ''
     btncontain.innerHTML = ''
 
-    if(data.results[i].difficulty == 'hard'){
-        duration = 5
-        lives=10
-        mulitplyer = lives*Math.floor(Math.random() * .90)
-        console.log(mulitplyer)
-    }else if(data.results[i].difficulty == 'medium'){
-        lives=25
-        console.log(lives)
-        mulitplyer = lives*(Math.random() * .90)
-        console.log(mulitplyer)
-        duration = 10
-
-    }else if(data.results[i].difficulty == 'easy'){
-        lives=50
-        console.log(lives) 
-        mulitplyer = lives*Math.floor(Math.random() * .90)
-        console.log(mulitplyer)
-        duration = 15
-
-    }
+   
     if(data.results.length > i){
-        console.log(data.results.length)
-    console.log(i)
-
-    let answer = document.getElementById('questions')
-    let timer = document.createElement('div'
-        
-    )
-    timer.setAttribute('id', 'timer');
-    btncontain.classList.add('btnconatin')
-    contain.classList.add('container')
-    contain.appendChild(btncontain)
-    answer.appendChild(contain)
-    console.log(data.results[i].question ) 
-    let Div = document.createElement("div");
-    Div.classList.add('question')
-    Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
-    contain.appendChild(Div)
+        if(data.results[i].difficulty == 'hard'){
+            duration = 5
+            lives=10
+            mulitplyer = lives*Math.floor(Math.random() * .90)
+            console.log(mulitplyer)
+        }else if(data.results[i].difficulty == 'medium'){
+            lives=25
+            console.log(lives)
+            mulitplyer = lives*(Math.random() * .90)
+            console.log(mulitplyer)
+            duration = 10
     
-    const correctAnswer = data.results[i].correct_answer;
-    contain.appendChild(timer)
-
-    startTimer(duration,timer)
-
-
-    if (data.results[i].type === 'boolean') {
-        for(let j = 0; j < 2; j++){
-            
-            if(j == 0){
-                let btns = document.createElement('button')
-                btncontain.appendChild(btns)
-                btns.innerHTML = 'true'
-
-                btns.addEventListener('click', function() {
-                    checkAnswer(answerText, correctAnswer);
-                });
-
-            }
-            else{
-                let btns = document.createElement('button')
-                btncontain.appendChild(btns)
-                btns.innerHTML = 'false'
-
-                btns.addEventListener('click', function() {
-                    checkAnswer(answerText, correctAnswer);
-                });
-            }
+        }else if(data.results[i].difficulty == 'easy'){
+            lives=50
+            console.log(lives) 
+            mulitplyer = lives*Math.floor(Math.random() * .90)
+            console.log(mulitplyer)
+            duration = 15
+    
         }
-    } else if (data.results[i].type === 'multiple') {
-        const allAnswers = [...data.results[i].incorrect_answers, correctAnswer];
-        allAnswers.sort(function() { return 0.5 - Math.random(); });
+        console.log(data.results.length)
+        console.log(i)
 
-        for (let j = 0; j < allAnswers.length; j++) {
-            createAnswer(allAnswers[j], correctAnswer);
-        }
-    }
+        let answer = document.getElementById('questions')
+        let timer = document.createElement('div' )
+        timer.setAttribute('id', 'timer');
+        btncontain.classList.add('btnconatin')
+        contain.setAttribute('id', 'container')
+        contain.appendChild(btncontain)
+        answer.appendChild(contain)
+        console.log(data.results[i].question ) 
+        let Div = document.createElement("div");
+        Div.classList.add('question')
+        Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
+        contain.appendChild(Div)
+        
+        const correctAnswer = data.results[i].correct_answer;
+        contain.appendChild(timer)
+
+        startTimer(duration,timer)
+
+
+        if (data.results[i].type === 'boolean') {
+            for(let j = 0; j < 2; j++){
+                
+                if(j == 0){
+                    let btns = document.createElement('button')
+                    btncontain.appendChild(btns)
+                    btns.innerHTML = 'True'
+
+                    btns.addEventListener('click', function() {
+                        checkAnswer(answerText, correctAnswer);
+                    });
+
+                }
+                else{
+                    let btns = document.createElement('button')
+                    btncontain.appendChild(btns)
+                    btns.innerHTML = 'False'
+
+                    btns.addEventListener('click', function() {
+                        checkAnswer(answerText, correctAnswer);
+                    });
+                }
+            }
+            } else if (data.results[i].type === 'multiple') {
+                const allAnswers = [...data.results[i].incorrect_answers, correctAnswer];
+                allAnswers.sort(function() { return 0.5 - Math.random(); });
+
+                for (let j = 0; j < allAnswers.length; j++) {
+                    createAnswer(allAnswers[j], correctAnswer);
+                }
+            }
     }else{
-        contain.innerHTML = '<p>hey</p>'
+        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
 
     }
     
@@ -240,7 +259,7 @@ function show(data) {
         if(answerText == correctAnswer){
             show(data)
             imgDelivery(data)
-
+            right++
             i++
 
             console.log('yup')
@@ -279,7 +298,7 @@ function show(data) {
     }
 
     function gameover(){
-        contain.innerHTML = 'game voer stinky'
+        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>         <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
 
     }
    
