@@ -152,6 +152,7 @@ async function searchtrivea(diff) {
         
          
     } catch(error) {
+      contain.innerHTML = 'failure to fetch'
       console.error('Error fetching trivea:', error);
     } // catch
   } // searchTvShows 
@@ -270,7 +271,6 @@ function show(data) {
             imgDelivery(data)
             right++
             i++
-
         }else{
             i++
 
@@ -282,6 +282,8 @@ function show(data) {
             contain.appendChild(temp)
 
             setTimeout(() => {
+                imgDelivery(data)
+
                 show(data)
                 temp.innerHTML = ''
             }, 3000); 
