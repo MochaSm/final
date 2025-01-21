@@ -8,8 +8,8 @@
     "lang":"en-GB",
     "name":"Quzzical",
     "short_name":"Quizzical",
-    "start_url":"something",
-    "scope":"something",
+    "start_url":"https://mochasm.github.io/final/",
+    "scope":"https://mochasm.github.io/final/",
    
 
      "screenshots": [
