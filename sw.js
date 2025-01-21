@@ -51,7 +51,11 @@ self.addEventListener('fetch', event => {
         // If network fetch is successful, cache the response
         return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
           cache.put(event.request, networkResponse.clone());
-
+          
+          if (url.protocol === 'chrome-extension:') {
+            return;
+        }
+    
           return networkResponse;
         });
       })
