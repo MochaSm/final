@@ -235,7 +235,7 @@ function show(data) {
             }
     }else{
         contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
-
+        i = 0
     }
     
 }
@@ -264,6 +264,8 @@ function show(data) {
             i++
 
         }else{
+            i++
+
             contain.innerHTML = ''
             lives = lives - mulitplyer;
             let temp = document.createElement('div')
@@ -306,6 +308,7 @@ function show(data) {
 
     function gameover(){
         contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>         <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
+        i = 0
 
     }
    
