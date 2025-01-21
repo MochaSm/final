@@ -10,6 +10,8 @@
     "short_name":"Quizzical",
     "start_url":"https://mochasm.github.io/final/",
     "scope":"https://mochasm.github.io/final/",
+    "id":"https://mochasm.github.io/final/",
+    
    
 
      "screenshots": [
