@@ -1,3 +1,6 @@
+//TODO: Add mmedia quearies for credits and add lives and maybe a loading screen
+
+
 const apikey ='JKiV4XYc0msceTYMlAI0meyijD64OdWTu77JCD8vNXVAWLpYPtU6DqvU'
 const easy = `https://opentdb.com/api.php?amount=20&difficulty=easy`
 const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
