@@ -6,6 +6,9 @@
     font-family: sans-serif;
 }
 
+#back{
+  font-size: 2em;
+}
 #setts{
   display: none;
 }

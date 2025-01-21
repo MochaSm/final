@@ -219,8 +219,6 @@ function show(data) {
     }
     
 }
-    // questionDiv.appendChild(answersList);
-    // answersContainer.appendChild(questionDiv)
 
     function createAnswer(answerText, correctAnswer) {
 
