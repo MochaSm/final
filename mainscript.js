@@ -85,6 +85,7 @@ let right = 0;
 async function imgDelivery(data) { 
         let contain = document.getElementById('container')   
         const query = `${data.results[i].question}`
+            console.log(i)
             console.log(query);
         const imageUrl = await fetchPexelsData(query);
 
@@ -209,6 +210,7 @@ function show(data) {
                     let btns = document.createElement('button')
                     btncontain.appendChild(btns)
                     btns.innerHTML = 'True'
+                    answerText = 'True'
 
                     btns.addEventListener('click', function() {
                         checkAnswer(answerText, correctAnswer);
@@ -219,6 +221,9 @@ function show(data) {
                     let btns = document.createElement('button')
                     btncontain.appendChild(btns)
                     btns.innerHTML = 'False'
+                    answerText = 'False'
+                    
+
 
                     btns.addEventListener('click', function() {
                         checkAnswer(answerText, correctAnswer);
