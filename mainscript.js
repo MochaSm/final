@@ -133,6 +133,7 @@ async function fetchPexelsData(search) {
 }
 
 async function searchtrivea(diff) {
+    temp = ''
     diff = diff;
     document.getElementById('landing').style.display = 'none'
 
@@ -262,12 +263,18 @@ function show(data) {
             right++
             i++
 
-            console.log('yup')
         }else{
-            console.log(mulitplyer)
+            contain.innerHTML = ''
             lives = lives - mulitplyer;
-            
-            console.log(lives)
+            let temp = document.createElement('div')
+            temp.classList.add('temp')
+            temp.innerHTML = `<h1 style="color: red;">WRONG</h1> \n <h2>you have ${lives} lives left</h2>`
+            contain.appendChild(temp)
+
+            setTimeout(() => {
+                show(data)
+                temp.innerHTML = ''
+            }, 3000); 
 
         }
     }else{
