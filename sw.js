@@ -8,8 +8,8 @@ const STATIC_ASSETS = [
   '/index.html',
   '/styles.css',
   '/mainscript.js',
-//   '/icon/icon512_maskable.png',
-//   '/icon/icon512_rounded.png',
+  '/icon/icon512_maskable.png',
+  '/icon/icon512_rounded.png',
   '/manifest.json',
   'ss/desktopSS.png',
   'ss/mobileSS.png'
