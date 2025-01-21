@@ -278,7 +278,8 @@ function show(data) {
             lives = lives - mulitplyer;
             let temp = document.createElement('div')
             temp.classList.add('temp')
-            temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1> \n <h2>you have ${lives} lives left</h2>`
+            temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1> `
+            // \n <h2>you have ${lives} lives left</h2>
             contain.appendChild(temp)
 
             setTimeout(() => {

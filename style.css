@@ -21,13 +21,18 @@
   padding-top: 6px;
 }
 #setts{
+  background: rgba(150, 148, 148, 0.25);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 1px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
   gap: 12px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
-  background-color: #cccc;
   width: 75%;
   justify-self: center;
   padding-left: 20px;
@@ -60,9 +65,26 @@ option{
   text-decoration: none;
 }
 #creds{
-  display: none;
-}
+  background: rgba(150, 148, 148, 0.25);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 1px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+    gap: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 75%;
+    justify-self: center;
+    padding-left: 20px;
+    align-content: center;}
 
+    #creds >h1{
+      font-size: 3em;
+    }
 .icons{
   display: flex;
   justify-content: center;
@@ -290,7 +312,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    background-color: #cccc;
     width: 75%;
     justify-self: center;
     grid-template-rows: 1fr .4fr .5fr;
@@ -310,6 +331,12 @@ body {
 }
   
 #container{
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
   text-align: center;
   display: grid;
   justify-content: center;
@@ -317,7 +344,6 @@ body {
   grid-template-areas: 'question' 'img' 'btns';
   width: 85%;
   justify-self: center;
-  background-color: #cccc ;
   align-items: center;
   gap: 12px;
   position: absolute;
@@ -339,6 +365,25 @@ body {
 }
 
 .btnconatin > button:nth-child(1){
+  background-color: var(--blue);
+}
+
+.btnconatin > button:nth-child(2){
+  background-color: var(--green);
+
+}
+
+.btnconatin > button:nth-child(3){
+  background-color: var(--purple);
+
+}
+
+.btnconatin > button:nth-child(4){
+  background-color: var(--red);
+
+}
+
+.btnconatin > button:nth-child(1):hover{
   background-color: var(--blue);
 }
 
@@ -394,7 +439,6 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    background-color: #cccc;
     width: 75%;
     justify-self: center;
     grid-template-rows: .3fr .2fr .2fr;
@@ -475,6 +519,12 @@ body {
 }
   
 #container{
+  background: rgba( 255, 255, 255, 0.25 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 4px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
   position: absolute;
   top: 50%;
   left: 50%;
@@ -490,7 +540,6 @@ body {
   grid-template-areas: 'question' 'img' 'btns';
   width: 85%;
   justify-self: center;
-  background-color: #cccc ;
   align-items: center;
 
 }
