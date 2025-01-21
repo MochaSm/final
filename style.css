@@ -379,11 +379,11 @@ body {
 
 @media only screen and (max-width: 600px) {
   #setts > h1{
-    font-size: 4em;
+    font-size: 3em;
   }
 
   #setts > h2{
-    font-size: 2em;
+    font-size: 1.8em;
   }
 
 
@@ -470,6 +470,9 @@ body {
     grid-template-rows: auto
   }
 
+#container >h1{
+  font-size: 3em;
+}
   
 #container{
   position: absolute;
