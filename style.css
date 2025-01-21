@@ -320,6 +320,10 @@ body {
   background-color: #cccc ;
   align-items: center;
   gap: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .btnconatin > button{
@@ -468,6 +472,10 @@ body {
 
   
 #container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
   align-self: center;
   gap: 12px;
