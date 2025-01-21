@@ -242,7 +242,7 @@ function show(data) {
                 }
             }
     }else{
-        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
+        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i class="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
         i = 0
     }
     
@@ -315,7 +315,7 @@ function show(data) {
     }
 
     function gameover(){
-        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>         <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
+        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>         <i class="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
         i = 0
 
     }
