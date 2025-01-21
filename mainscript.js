@@ -2,7 +2,7 @@ const apikey ='JKiV4XYc0msceTYMlAI0meyijD64OdWTu77JCD8vNXVAWLpYPtU6DqvU'
 const easy = `https://opentdb.com/api.php?amount=20&difficulty=easy`
 const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
 const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
-
+let interval = null;
     let contain = document.createElement('div')
     let btncontain = document.createElement('div')
     let gear = document.getElementById('gear')
@@ -33,16 +33,11 @@ function back(){
 function settings(){
     document.getElementById('landing').style.display = 'none'
     document.getElementById('setts').style.display = 'grid'
-
-    
-
 }
 
 function creds(){
     document.getElementById('landing').style.display = 'none'
     document.getElementById('creds').style.display = 'grid'
-
-
 }
 let lives = null;
 
@@ -122,9 +117,9 @@ async function searchtrivea(diff) {
     document.getElementById('landing').style.display = 'none'
 
     try {   
-        // const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
+        const response = await fetch(`https://opentdb.com/api.php?amount=20&difficulty=${diff}&type=multiple`);
         
-        const response = await fetch('/questions.json');
+        // const response = await fetch('/questions.json');
         data = await response.json();
         console.log(data);
         show(data)
@@ -137,6 +132,8 @@ async function searchtrivea(diff) {
   } // searchTvShows 
 
 function show(data) {
+    clearInterval(interval);
+
     contain.innerHTML = ''
     btncontain.innerHTML = ''
 
@@ -262,21 +259,18 @@ function show(data) {
     }
 
     function startTimer(duration, timer) {
-        let times = duration, minutes, seconds;
+        let times = duration, seconds;
         let startTime = Date.now() + 1000; 
-    
         interval = setInterval(() => {
-            minutes = parseInt(times / 60, 10);
             seconds = parseInt(times % 60, 10);
+        console.log(seconds)
             
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
+            
             if (seconds < 10) {
                 seconds = "0" + seconds;
             }
             
-            document.getElementById('timer').innerHTML = '<i class="fa-regular fa-clock"></i>' + minutes + ":" + seconds;
+            document.getElementById('timer').innerHTML = '<i class="fa-regular fa-clock"></i>' + seconds +' seconds'   ;
             if (--times < 0) {
                 times = 0;
                 gameover();
@@ -300,7 +294,7 @@ function show(data) {
       deferredPrompt = e;
     
       const installButton = document.getElementById('installButton');
-      installButton.style.display = 'block';
+      installButton.style.display = 'inline-block';
     
       installButton.addEventListener('click', () => {
         console.log('what the sigma')
@@ -308,12 +302,13 @@ function show(data) {
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-          } else {
+                console.log('User accepted the install prompt');
+            } else {
             console.log('User dismissed the install prompt');
           }
           deferredPrompt = null;
         });
       });
+      
     });                    
              
