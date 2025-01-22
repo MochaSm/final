@@ -258,9 +258,9 @@ function show(data) {
             }
     }else if(data.results.length <= i || lives <= 0){
 
-        contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
+        contain.innerHTML = `<h1>game over stinky</h1> \n <h2>you got ${right}/${amount} </h2>   <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
         if(lives <= 0){
-            contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p> \n <p>you ran out of lives</p>  <i  onclick="back()" class="fa-solid fa-arrow-left back"></i> `
+            contain.innerHTML = `<h1>game over stinky</h1> \n <h2>you got ${right}/${amount} </h2> \n <p>you ran out of lives</p>  <i  onclick="back()" class="fa-solid fa-arrow-left back"></i> `
 
         }
             right = 0
