@@ -5,6 +5,11 @@
     cursor: crosshair ;
     font-family: sans-serif;
 }
+
+#timer{
+  font-size: 1.5em;
+  color: var(--red);
+}
 .temp{
  
   position: absolute;
@@ -140,6 +145,10 @@ option{
     display: grid;
     width: 50vw;
     
+}
+
+.question > h2{
+  text-decoration: underline;
 }
 
 .question-image{
@@ -550,11 +559,15 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 
 }
 
+.question > h2{
+  font-size: 1.2em;
+}
+
 .btnconatin > button{
   color: white;
   text-decoration: none;
   border: none;
-  height: 75px;
+  height: 50px;
   width: 100%;
   border-top-left-radius: 5px;   
   border-top-right-radius: 5px;
