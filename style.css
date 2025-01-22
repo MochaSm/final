@@ -6,8 +6,11 @@
     font-family: sans-serif;
 }
 .temp{
-  justify-self: center;
-  display: flex;
+ 
+  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #back{
   font-size: 2em;

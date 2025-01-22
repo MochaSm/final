@@ -10,12 +10,13 @@ const STATIC_ASSETS = [
   '/mainscript.js',
   '/icon/icon512_maskable.png',
   '/icon/icon512_rounded.png',
-  '/manifest.json',
-  'ss/desktopSS.png',
-  'ss/mobileSS.png'
+  '/brandsimg/images.webp',
+  '/brandsimg/Netflix.webp',
+  '/brandsimg/Paramount-Logo.webp',
+  '/brandsimg/Prime.webp',
+  '/manifest.json'
   // Add other static files you want to cache
-];           
-
+];
 
 // Install event: Cache static assets
 self.addEventListener('install', event => {
@@ -45,35 +46,25 @@ self.addEventListener('activate', event => {
 
 // Fetch event: Network-first strategy
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    fetch(event.request)
-      .then(networkResponse => {
-        // If network fetch is successful, cache the response
-        return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
-          cache.put(event.request, networkResponse.clone());
-          
-          if (url.protocol === 'chrome-extension:') {
-            return;
-        }
-    
-          return networkResponse;
-        });
-      })
-      .catch(() => {
-        // If network fetch fails, fallback to cache
-        return caches.match(event.request);
-      })
-  );
+  // Only cache HTTP(s) requests
+  if (event.request.url.startsWith('http')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(networkResponse => {
+          // If network fetch is successful, cache the response
+          return caches.open(DYNAMIC_CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // If network fetch fails, fallback to cache
+          return caches.match(event.request);
+        })
+    );
+  } else {
+    // For non-HTTP(s) requests (e.g., chrome-extension://), fallback to the network
+    event.respondWith(fetch(event.request));
+  }
 });
-
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/sw.js').then(function(registration) {
-        console.log('Service Worker registered with scope:', registration.scope);
-      }, function(error) {
-        console.log('Service Worker registration failed:', error);
-      });
-    });
-  }                    
-    
