@@ -1,4 +1,3 @@
-//TODO: Add mmedia quearies for credits and add lives and maybe a loading screen
 
 
 const apikey ='JKiV4XYc0msceTYMlAI0meyijD64OdWTu77JCD8vNXVAWLpYPtU6DqvU'
@@ -18,9 +17,16 @@ let i = 0;
 let x = '0'
 let y = '0'
 
+let multiplier = 0;
+let tickCount = 0;
+
 let amount = '10'
 let category = '9';
 let type = "multiple";
+
+let diff =null;
+let right = 0;
+
 
 //var changes
 function varchange(value){
@@ -66,21 +72,8 @@ function creds(){
     document.getElementById('landing').style.display = 'none'
     document.getElementById('creds').style.display = 'grid'
 }
-let lives = null;
 
 
-let mulitplyer = null;
-
-
-
-let diff =null;
-let right = 0;
-
-// let mulitplyer  = lives * mult;
-
-
-
-// let = amount;
 
 
 
@@ -163,28 +156,30 @@ function show(data) {
     contain.innerHTML = ''
     btncontain.innerHTML = ''
 
+    if(data.results[0].difficulty == 'hard'){
+        duration = 5
+        lives=10
+        mulitplyer = lives*Math.floor(Math.random() * .90)
+        console.log(mulitplyer)
+    }else if(data.results[0].difficulty == 'medium'){
+        lives=25
+        console.log(lives)
+        mulitplyer = lives*(Math.random() * .90)
+        console.log(mulitplyer)
+        duration = 10
+
+    }else if(data.results[0].difficulty == 'easy'){
+        lives=50
+        console.log(lives) 
+        mulitplyer = lives*Math.floor(Math.random() * .90)
+        console.log(mulitplyer)
+        duration = 15
+
+    }
+
    
     if(data.results.length > i){
-        if(data.results[i].difficulty == 'hard'){
-            duration = 5
-            lives=10
-            mulitplyer = lives*Math.floor(Math.random() * .90)
-            console.log(mulitplyer)
-        }else if(data.results[i].difficulty == 'medium'){
-            lives=25
-            console.log(lives)
-            mulitplyer = lives*(Math.random() * .90)
-            console.log(mulitplyer)
-            duration = 10
-    
-        }else if(data.results[i].difficulty == 'easy'){
-            lives=50
-            console.log(lives) 
-            mulitplyer = lives*Math.floor(Math.random() * .90)
-            console.log(mulitplyer)
-            duration = 15
-    
-        }
+        life()
         console.log(data.results.length)
         console.log(i)
 
@@ -278,7 +273,7 @@ function show(data) {
             lives = lives - mulitplyer;
             let temp = document.createElement('div')
             temp.classList.add('temp')
-            temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1> `
+            temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have ${lives} lives left</h2>`
             // \n <h2>you have ${lives} lives left</h2>
             contain.appendChild(temp)
 
@@ -295,12 +290,25 @@ function show(data) {
     }
     }
 
+    function life(){
+        if(lives > 0){
+            contain.innerHTML = ''
+            let lifediv = document.createElement('div')
+            lifediv.classList.add('lives')
+            lifediv.innerHTML = `<i class="fa-solid fa-heart"></i> x ${lives}`
+            contain.appendChild(lifediv)
+        }else{
+            gameover()
+        }
+        
+    }
+
     function startTimer(duration, timer) {
+        
         let times = duration, seconds;
         let startTime = Date.now() + 1000; 
         interval = setInterval(() => {
             seconds = parseInt(times % 60, 10);
-        console.log(seconds)
             
             
             if (seconds < 10) {
@@ -315,8 +323,17 @@ function show(data) {
                 clearInterval(interval); 
             }
         }, 1000);
+
+        setInterval(() => {
+            tickCount++;
+            updateMultiplier();
+        }, 1000);
     }
 
+    function updateMultiplier() {
+        multiplier = lives * tickCount;
+        console.log(`Multiplier: ${multiplier}`);
+    }
     function gameover(){
         contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>         <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
         i = 0
