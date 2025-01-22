@@ -6,6 +6,19 @@
     font-family: sans-serif;
 }
 
+#creds >h2:nth-child(3){
+  color: var(--green);
+}
+
+#creds >h2:nth-child(4){
+  color: var(--purple);
+  
+}
+#creds >h2:nth-child(5){
+  color: var(--red);
+  
+}
+
 #stats{
   grid-area: stats;
   height: 50px;
@@ -35,7 +48,7 @@ width: 100%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.back{
+#back{
   font-size: 2em;
 }
 
@@ -562,8 +575,9 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 #stats{
+  gap: 20px;
   grid-area: stats;
-  height: 50px;
+  height: 80px;
   display: grid;
   grid-template-columns: .2fr .2fr .2fr;
   justify-content: center;
