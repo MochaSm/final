@@ -9,13 +9,13 @@
     <link rel="manifest" href="manifest.json">
 
     <!-- icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="preload"  href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 
     <!-- meta sttuff -->
     <meta charset="UTF-8">
@@ -28,10 +28,15 @@
 <div id="pos"></div>
 <div class="main">
     <div id="creds">
+        <h1>INFO</h1>
         <h1>Web dev 11 final project - Alex Le MDSS 27</h1>
-        <h2>you can ignore this section I did this so it looks aesthically even on the front tbh ¯\_(ツ)_/¯</h2>
+        <h2>Easy - 50 lives and 15 seconds</h2>
+        <h2>Medium - 25 lives and 10 seconds</h2>
+        <h2>Hard - 10 lives ad 5 seconds</h2>
+        <h3>Once lives are depnleted you will lose</h3>
+        <h3>Once time is up it will go to the next question</h3>
         <div class="exit">
-            <i onclick="back()" class="fa-solid fa-arrow-left back"></i>
+            <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>
             <p>exit</p>
         </div>
 
@@ -69,7 +74,7 @@
             </div>
         </div>
         <div class="exit">
-                 <i onclick="back()" class="fa-solid fa-arrow-left back"></i>
+            <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>
             <p>exit</p>
         </div>
     </div>
