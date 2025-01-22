@@ -5,19 +5,20 @@ const easy = `https://opentdb.com/api.php?amount=20&difficulty=easy`
 const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
 const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
 let interval = null;
+let ticks = null
     let contain = document.createElement('div')
     let btncontain = document.createElement('div')
     let gear = document.getElementById('gear')
     let info = document.getElementById('info')
 
     let front = document.getElementById('landing');
+let lives = 0
 let duration = 0
 let data  = ''
 let i = 0;
 let x = '0'
 let y = '0'
 
-let multiplier = 0;
 let tickCount = 0;
 
 let amount = '10'
@@ -85,9 +86,8 @@ async function imgDelivery(data) {
             console.log(query);
         const imageUrl = await fetchPexelsData(query);
 
-        if (imageUrl){ // Hitler
+        if (imageUrl){ 
             console.log(imageUrl)
-            // Create an image element
             const img = document.createElement("img");
             img.src = imageUrl.photos[0].src.medium;
             img.alt = `Image for ${data.results[i].question}`;
@@ -95,8 +95,11 @@ async function imgDelivery(data) {
             i++
 
 
-            // Append the image to the corresponding question
+            if(data.results.length >= i && lives > 0){
             contain.appendChild(img);
+            }else{
+                console.log('no more questions')
+            }
         } else{
             console.error(`No image found for question:
             ${data.results[i].question}`);
@@ -130,8 +133,24 @@ async function fetchPexelsData(search) {
 }
 
 async function searchtrivea(diff) {
+
+    tickCount = 0;
+    lives = 0;
     temp = ''
     diff = diff;
+
+    if(diff == 'hard'){
+        lives = lives=10
+    }else if(diff== 'medium'){
+        lives = lives=25
+        console.log(lives)
+
+    }else if(diff == 'easy'){
+        lives = lives=50
+        console.log(lives) 
+
+    }
+
     document.getElementById('landing').style.display = 'none'
 
     try {   
@@ -151,56 +170,56 @@ async function searchtrivea(diff) {
   } // searchTvShows 
 
 function show(data) {
-    clearInterval(interval);
+    console.log(i)
+    lives = lives - tickCount
+    console.log('lives '+lives)
+    clearInterval(interval); 
 
-    contain.innerHTML = ''
     btncontain.innerHTML = ''
+    contain.innerHTML = ''
 
     if(data.results[0].difficulty == 'hard'){
         duration = 5
-        lives=10
-        mulitplyer = lives*Math.floor(Math.random() * .90)
-        console.log(mulitplyer)
     }else if(data.results[0].difficulty == 'medium'){
-        lives=25
-        console.log(lives)
-        mulitplyer = lives*(Math.random() * .90)
-        console.log(mulitplyer)
         duration = 10
 
     }else if(data.results[0].difficulty == 'easy'){
-        lives=50
-        console.log(lives) 
-        mulitplyer = lives*Math.floor(Math.random() * .90)
-        console.log(mulitplyer)
         duration = 15
 
     }
 
-   
-    if(data.results.length > i){
-        life()
+    
+    if(data.results.length >= i  &&  lives > 0){
         console.log(data.results.length)
         console.log(i)
 
         let answer = document.getElementById('questions')
         let timer = document.createElement('div' )
+        let stats = document.createElement('div')
+
+        let tix = document.createElement('div')
+        tix.classList.add('ticks')
+        tix.innerHTML = "ticks" + tickCount 
+        stats.appendChild(tix)
+        stats.setAttribute('id', 'stats')
         timer.setAttribute('id', 'timer');
         btncontain.classList.add('btnconatin')
         contain.setAttribute('id', 'container')
         contain.appendChild(btncontain)
+        contain.appendChild(stats)
         answer.appendChild(contain)
         console.log(data.results[i].question ) 
         let Div = document.createElement("div");
         Div.classList.add('question')
         Div.innerHTML = "<h2>"+data.results[i].question+"</h2>";
         contain.appendChild(Div)
+    document.getElementById('container').style.display = 'grid'
         
         const correctAnswer = data.results[i].correct_answer;
-        contain.appendChild(timer)
+        stats.appendChild(timer)
 
-        startTimer(duration,timer)
-
+        startTimer(duration,timer,data,stats)
+        life(stats)
 
         if (data.results[i].type === 'boolean') {
             for(let j = 0; j < 2; j++){
@@ -237,8 +256,14 @@ function show(data) {
                     createAnswer(allAnswers[j], correctAnswer);
                 }
             }
-    }else{
+    }else if(data.results.length <= i || lives <= 0){
+
         contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
+        if(lives <= 0){
+            contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p> \n <p>you ran out of lives</p>   <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
+
+        }
+            right = 0
         i = 0
     }
     
@@ -258,28 +283,30 @@ function show(data) {
     function checkAnswer(answerText, correctAnswer){
     console.log(i)
 
-    if(lives > 1){
+    if(lives >= 0){
                 
    
         if(answerText == correctAnswer){
             show(data)
             imgDelivery(data)
             right++
-            i++
         }else{
-            i++
-
+            clearInterval(ticks); 
+            console.log(ticks + 'ticks')
             contain.innerHTML = ''
-            lives = lives - mulitplyer;
+            lives = lives - tickCount;
+            tickCount = 0
             let temp = document.createElement('div')
             temp.classList.add('temp')
-            temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have ${lives} lives left</h2>`
-            // \n <h2>you have ${lives} lives left</h2>
+            if(lives > 0){
+                temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have ${lives} lives left</h2>`
+            }else{
+                temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have 0 lives left</h2>`
+            }
             contain.appendChild(temp)
 
             setTimeout(() => {
                 imgDelivery(data)
-
                 show(data)
                 temp.innerHTML = ''
             }, 3000); 
@@ -290,20 +317,24 @@ function show(data) {
     }
     }
 
-    function life(){
+    
+
+    function life(stats){
         if(lives > 0){
-            contain.innerHTML = ''
             let lifediv = document.createElement('div')
             lifediv.classList.add('lives')
-            lifediv.innerHTML = `<i class="fa-solid fa-heart"></i> x ${lives}`
-            contain.appendChild(lifediv)
+            lifediv.innerHTML = `<i style="color: red; font-size: 2em;" class="fa-solid fa-heart"></i> x ${lives}`
+            stats.appendChild(lifediv)
         }else{
             gameover()
         }
         
     }
 
-    function startTimer(duration, timer) {
+    function startTimer(duration, timer, data, stats) {
+        console.log('Timer started');
+        tickCount = 0;
+        clearInterval(ticks)
         
         let times = duration, seconds;
         let startTime = Date.now() + 1000; 
@@ -317,23 +348,28 @@ function show(data) {
             
             document.getElementById('timer').innerHTML = '<i class="fa-regular fa-clock"></i>' + seconds +' seconds'   ;
             if (--times < 0) {
-                times = 0;
-                gameover();
-                document.getElementById('timer').innerHTML = "";
-                clearInterval(interval); 
+                if(lives > 0){
+                    console.log(lives)
+                    show(data)
+                    imgDelivery(data)
+                    document.getElementById('timer').innerHTML = "";
+                    clearInterval(interval); 
+                    startTimer(duration, timer, data);
+                }else{
+                    gameover()
+                }
             }
         }, 1000);
 
-        setInterval(() => {
+        ticks = setInterval(() => {
+            
             tickCount++;
-            updateMultiplier();
+           
+            console.log(tickCount);
         }, 1000);
     }
 
-    function updateMultiplier() {
-        multiplier = lives * tickCount;
-        console.log(`Multiplier: ${multiplier}`);
-    }
+   
     function gameover(){
         contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>         <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
         i = 0
