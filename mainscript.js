@@ -261,7 +261,7 @@ function show(data) {
         let ends = document.createElement('div')
         ends.classList.add('end')
         contain.appendChild(ends)
-        ends.innerHTML = `<h1>game over stinky</h1> \n <h2 style = "color: blue;">you got ${right}/${amount} </h2> \n <h2> You're outta quesions /ᐠ｡ꞈ｡ᐟ\\</h2>    <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
+        ends.innerHTML = `<h1>game over stinky</h1> \n <h2 style = "color: blue;">you got ${right}/${amount} </h2> \n <h2> You're outta questions /ᐠ｡ꞈ｡ᐟ\\</h2>    <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
         if(lives <= 0){
             contain.innerHTML = ''
             let ends = document.createElement('div')
