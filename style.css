@@ -6,6 +6,17 @@
   font-family: sans-serif;
 }
 
+.end{
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 12px;
+}
+
+
 #creds >h2:nth-child(3){
 color: var(--green);
 }
@@ -334,6 +345,10 @@ animation-timing-function: linear;
 }
 
 @media only screen and (min-width: 1200px) {
+  .end > h1{
+    font-size: 6em;
+  }
+  
 
 #setts{
   gap: 12px;
@@ -453,6 +468,11 @@ grid-area: question;
 }
 
 @media only screen and (max-width: 600px) {
+  .end > h1{
+    font-size: 3em;
+  }
+  
+
 #setts > h1{
   font-size: 3em;
 }

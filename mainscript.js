@@ -189,7 +189,7 @@ function show(data) {
     }
 
     
-    if(data.results.length >= i  &&  lives > 0){
+    if(data.results.length > i  &&  lives > 0){
         console.log(data.results.length)
         console.log(i)
 
@@ -257,10 +257,18 @@ function show(data) {
                 }
             }
     }else if(data.results.length <= i || lives <= 0){
-
-        contain.innerHTML = `<h1>game over stinky</h1> \n <h2>you got ${right}/${amount} </h2>   <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
+        contain.innerHTML = ''
+        let ends = document.createElement('div')
+        ends.classList.add('end')
+        contain.appendChild(ends)
+        ends.innerHTML = `<h1>game over stinky</h1> \n <h2 style = "color: blue;">you got ${right}/${amount} </h2> \n <h2> You're outta quesions /ᐠ｡ꞈ｡ᐟ\\</h2>    <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
         if(lives <= 0){
-            contain.innerHTML = `<h1>game over stinky</h1> \n <h2>you got ${right}/${amount} </h2> \n <p>you ran out of lives</p>  <i  onclick="back()" class="fa-solid fa-arrow-left back"></i> `
+            contain.innerHTML = ''
+            let ends = document.createElement('div')
+            ends.classList.add('end')
+            contain.appendChild(ends)
+            ends.innerHTML = `<h1>game over stinky</h1> \n <h2 style = "color: blue;">you got ${right}/${amount} </h2> \n <h3 style ="color: red;">you ran out of lives</h3>  <i  onclick="back()" class="fa-solid fa-arrow-left back"></i> `
+            
 
         }
             right = 0
