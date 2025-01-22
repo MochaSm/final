@@ -260,7 +260,7 @@ function show(data) {
 
         contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p>   <i  onclick="back()" class="fa-solid fa-arrow-left back"></i>`
         if(lives <= 0){
-            contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p> \n <p>you ran out of lives</p>   <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>`
+            contain.innerHTML = `<h1>game over stinky</h1> \n <p>you got ${right}/${amount} </p> \n <p>you ran out of lives</p>  <i  onclick="back()" class="fa-solid fa-arrow-left back"></i> `
 
         }
             right = 0
