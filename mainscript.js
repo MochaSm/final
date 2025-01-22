@@ -190,16 +190,23 @@ function show(data) {
 
     
     if(data.results.length >= i  &&  lives > 0){
-        life()
         console.log(data.results.length)
         console.log(i)
 
         let answer = document.getElementById('questions')
         let timer = document.createElement('div' )
+        let stats = document.createElement('div')
+
+        let tix = document.createElement('div')
+        tix.classList.add('ticks')
+        tix.innerHTML = "ticks" + tickCount 
+        stats.appendChild(tix)
+        stats.setAttribute('id', 'stats')
         timer.setAttribute('id', 'timer');
         btncontain.classList.add('btnconatin')
         contain.setAttribute('id', 'container')
         contain.appendChild(btncontain)
+        contain.appendChild(stats)
         answer.appendChild(contain)
         console.log(data.results[i].question ) 
         let Div = document.createElement("div");
@@ -209,10 +216,10 @@ function show(data) {
     document.getElementById('container').style.display = 'grid'
         
         const correctAnswer = data.results[i].correct_answer;
-        contain.appendChild(timer)
+        stats.appendChild(timer)
 
-        startTimer(duration,timer,data)
-
+        startTimer(duration,timer,data,stats)
+        life(stats)
 
         if (data.results[i].type === 'boolean') {
             for(let j = 0; j < 2; j++){
@@ -284,19 +291,22 @@ function show(data) {
             imgDelivery(data)
             right++
         }else{
-        clearInterval(ticks); 
+            clearInterval(ticks); 
+            console.log(ticks + 'ticks')
             contain.innerHTML = ''
             lives = lives - tickCount;
+            tickCount = 0
             let temp = document.createElement('div')
             temp.classList.add('temp')
-            temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have ${lives} lives left</h2>`
-            // \n <h2>you have ${lives} lives left</h2>
+            if(lives > 0){
+                temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have ${lives} lives left</h2>`
+            }else{
+                temp.innerHTML = `<h1  style="color: red; font-size: 2.5em;">WRONG</h1>  \n <h2>you have 0 lives left</h2>`
+            }
             contain.appendChild(temp)
 
             setTimeout(() => {
-                
                 imgDelivery(data)
-
                 show(data)
                 temp.innerHTML = ''
             }, 3000); 
@@ -307,20 +317,21 @@ function show(data) {
     }
     }
 
-    function life(){
+    
+
+    function life(stats){
         if(lives > 0){
-            contain.innerHTML = ''
             let lifediv = document.createElement('div')
             lifediv.classList.add('lives')
-            lifediv.innerHTML = `<i class="fa-solid fa-heart"></i> x ${lives}`
-            contain.appendChild(lifediv)
+            lifediv.innerHTML = `<i style="color: red; font-size: 2em;" class="fa-solid fa-heart"></i> x ${lives}`
+            stats.appendChild(lifediv)
         }else{
             gameover()
         }
         
     }
 
-    function startTimer(duration, timer, data) {
+    function startTimer(duration, timer, data, stats) {
         console.log('Timer started');
         tickCount = 0;
         clearInterval(ticks)
@@ -351,7 +362,10 @@ function show(data) {
         }, 1000);
 
         ticks = setInterval(() => {
+            
             tickCount++;
+           
+            console.log(tickCount);
         }, 1000);
     }
 
