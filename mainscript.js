@@ -33,6 +33,7 @@ function varchange(value){
         document.getElementById('error').innerHTML = '<p  style ="color: red;">has to be atleast 1</p>'
         amount = 1
     }else{
+        document.getElementById('error').style.display = 'none'
         amount = value
     }
   }
