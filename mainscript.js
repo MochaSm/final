@@ -29,7 +29,12 @@ let right = 0;
 
 //var changes
 function varchange(value){
-    amount = value
+    if(value <= 0){
+        document.getElementById('error').innerHTML = '<p  style ="color: red;">has to be atleast 1</p>'
+        amount = 1
+    }else{
+        amount = value
+    }
   }
   
 
@@ -55,6 +60,7 @@ let pos = document.getElementById('pos')
 }
 
 function back(){
+    document.querySelector('.erroz').style.display = 'none'
     document.getElementById('landing').style.display = 'grid'
     document.getElementById('setts').style.display = 'none'
     document.getElementById('creds').style.display = 'none'
@@ -161,7 +167,14 @@ async function searchtrivea(diff) {
         
          
     } catch(error) {
-      main.innerHTML = 'failure to fetch'
+      if(data.response_code == 5){
+        console.log('too many request')
+        let main = document.querySelector('.main') 
+        let erroz = document.createElement('div' )
+        erroz.classList.add('erroz')
+        erroz.innerHTML ='<h2>too many request wait 5 seconds before starting</h2> \n <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>'
+        main.appendChild(erroz)
+      }
       console.error('Error fetching trivea:', error);
 
     } // catch
@@ -269,7 +282,7 @@ function show(data) {
             
 
         }
-            right = 0
+        right = 0
         i = 0
     }
     
