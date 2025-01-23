@@ -93,7 +93,7 @@ async function imgDelivery(data) {
 
 
             if(data.results.length >= i && lives > 0){
-            contain.appendChild(img);
+                contain.appendChild(img);
             }else{
                 console.log('no more questions')
             }
@@ -161,8 +161,9 @@ async function searchtrivea(diff) {
         
          
     } catch(error) {
-      contain.innerHTML = 'failure to fetch'
+      main.innerHTML = 'failure to fetch'
       console.error('Error fetching trivea:', error);
+
     } // catch
   } // searchTvShows 
 
