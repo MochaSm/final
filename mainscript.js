@@ -1,17 +1,15 @@
 
 
 const apikey ='JKiV4XYc0msceTYMlAI0meyijD64OdWTu77JCD8vNXVAWLpYPtU6DqvU'
-const easy = `https://opentdb.com/api.php?amount=20&difficulty=easy`
-const medium = `https://opentdb.com/api.php?amount=20&difficulty=medium`
-const hard =`https://opentdb.com/api.php?amount=20&difficulty=hard`
+
+
 let interval = null;
 let ticks = null
-    let contain = document.createElement('div')
-    let btncontain = document.createElement('div')
-    let gear = document.getElementById('gear')
-    let info = document.getElementById('info')
-
-    let front = document.getElementById('landing');
+let contain = document.createElement('div')
+let btncontain = document.createElement('div')
+let gear = document.getElementById('gear')
+let info = document.getElementById('info')
+let front = document.getElementById('landing');
 let lives = 0
 let duration = 0
 let data  = ''
@@ -50,7 +48,6 @@ function varchange(value){
 
 onmousemove = function(e){
 let pos = document.getElementById('pos')
-
      x = e.clientX 
      y = e.clientY
     pos.innerHTML = 'x' +x +'y'+ y
