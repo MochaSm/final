@@ -61,11 +61,12 @@ let pos = document.getElementById('pos')
 }
 
 function back(){
-    document.querySelector('.erroz').style.display = 'none'
+    document.querySelector('.erroz').remove();
     document.getElementById('landing').style.display = 'grid'
     document.getElementById('setts').style.display = 'none'
     document.getElementById('creds').style.display = 'none'
     document.getElementById('container').style.display = 'none'
+    
 }
 
 function settings(){
