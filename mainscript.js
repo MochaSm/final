@@ -119,7 +119,7 @@ async function imgDelivery(data) {
 
 
 
-
+//wares
 async function fetchPexelsData(search) {
     const url = "https://api.pexels.com/v1/search?per_page=1&query=" + search;
     const headers = {
@@ -179,6 +179,13 @@ async function searchtrivea(diff) {
         let erroz = document.createElement('div' )
         erroz.classList.add('erroz')
         erroz.innerHTML ='<h2>too many request wait 5 seconds before starting</h2> \n <i id="erroz" onclick="erroz()" class="fa-solid fa-arrow-left"></i>'
+        main.appendChild(erroz)
+      }else{
+        console.log('too many request')
+        let main = document.querySelector('.main') 
+        let erroz = document.createElement('div' )
+        erroz.classList.add('erroz')
+        erroz.innerHTML ='<h2>Error has occured</h2> \n <i id="erroz" onclick="erroz()" class="fa-solid fa-arrow-left"></i>'
         main.appendChild(erroz)
       }
       console.error('Error fetching trivea:', error);
