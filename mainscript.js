@@ -60,8 +60,12 @@ let pos = document.getElementById('pos')
 
 }
 
+function erroz(){
+    document.querySelector('.erroz').remove()
+    document.getElementById('landing').style.display = 'grid'
+}
+
 function back(){
-    document.querySelector('.erroz').style.display = 'none'
     document.getElementById('landing').style.display = 'grid'
     document.getElementById('setts').style.display = 'none'
     document.getElementById('creds').style.display = 'none'
@@ -174,7 +178,7 @@ async function searchtrivea(diff) {
         let main = document.querySelector('.main') 
         let erroz = document.createElement('div' )
         erroz.classList.add('erroz')
-        erroz.innerHTML ='<h2>too many request wait 5 seconds before starting</h2> \n <i id="back" onclick="back()" class="fa-solid fa-arrow-left"></i>'
+        erroz.innerHTML ='<h2>too many request wait 5 seconds before starting</h2> \n <i id="erroz" onclick="erroz()" class="fa-solid fa-arrow-left"></i>'
         main.appendChild(erroz)
       }
       console.error('Error fetching trivea:', error);
