@@ -87,7 +87,7 @@ function creds(){
 
 
 
-
+//moe
 async function imgDelivery(data) { 
         let contain = document.getElementById('container')   
         const query = `${data.results[i].question}`
@@ -356,6 +356,7 @@ function show(data) {
         
     }
 
+    //kuwar
     function startTimer(duration, timer, data, stats) {
         console.log('Timer started');
         tickCount = 0;
@@ -386,6 +387,7 @@ function show(data) {
             }
         }, 1000);
 
+        //orginal
         ticks = setInterval(() => {
             
             tickCount++;
@@ -401,7 +403,7 @@ function show(data) {
 
     }
    
-//instal stuff
+//instal stuff Miss ware
 
     let deferredPrompt;
 
